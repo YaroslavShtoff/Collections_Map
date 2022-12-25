@@ -1,26 +1,37 @@
 package products;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class ListProducts {
-    private Set<Product> products = new HashSet<>();
-
+    private Map<Product,Integer> products = new HashMap<>();
     public ListProducts(Set<Product> productSet) {
         this.products = products;
     }
 
+    public ListProducts() {
+
+    }
+
+    public void add(Product product,  int count) {
+        if ((products.containsKey(product))) {
+            throw new IllegalArgumentException("Такой продукт уже есть!");
+        }
+        products.put(product,count);
+    }
     public void add(Product product) {
-        if ((products.contains(product))) {
-            throw new IllegalArgumentException("Такой продукт уже есть!");
-        }
-        products.add(product);
+        add(product, 1);
     }
+
+
+
     public void remove(Product product) {
-        if ((products.contains(product))) {
+        if ((products.containsKey(product))) {
             throw new IllegalArgumentException("Такой продукт уже есть!");
         }
-        products.add(product);
+        products.put(product,1);
     }
+
 
 }
